@@ -37,12 +37,35 @@ choice4 = document.querySelector('#choice4');
 answer = document.querySelector('#answer');
 nextButton = document.querySelector('#nextButton');
 choices = document.querySelectorAll(".choices");
+category = document.querySelector("#category");
+score = document.querySelector("#score");
+currentQuestion = document.querySelector("#currentQuestion");
+startButton = document.querySelector("#startButton");
 
 questionCount = 0;
+userChoice = 0;
+userScore = 0;
 
-displayQuestionAnswers(questionCount);
+newGame = document.querySelector("#newGame").style.display = 'none';
+startButton.addEventListener("click", startGame);
 
-nextButton.addEventListener("click", nextButtonClick);
+
+
+function startGame()
+{
+    questionCount = 0;
+    userChoice = 0;
+    userScore = 0;
+
+    newGame = document.querySelector("#newGame").style.display = 'block';
+    
+    displayQuestionAnswers(questionCount);
+    userSelection();
+    score.innerHTML = 'Score: ' + userScore;
+    //currentQuestion.innerHTML = 'Question: ' + questionCount + ' /10'; 
+    
+
+}
 
 
 function displayQuestionAnswers(questionNumber)
@@ -53,10 +76,14 @@ function displayQuestionAnswers(questionNumber)
     choice3.innerHTML = HTMLanswers[questionNumber][2];
     choice4.innerHTML = HTMLanswers[questionNumber][3];
 
+    nextButton.addEventListener("click", nextButtonClick);
+    
+
 }
 
 function nextButtonClick()
 {
+    
     if(questionCount < 9)
     {
         questionCount = questionCount + 1;   
@@ -64,13 +91,27 @@ function nextButtonClick()
     }
     else
     {
+        if(userScore > 80)
+        {
+            window.alert("You win Trivia game!");
+            
+        }
+        else
+        {
+            window.alert("You did not win Trivia game!");
+            
+        }
         questionCount = 0;
+        userScore = 0;
+        //disable next button
     }
     
     displayQuestionAnswers(questionCount);
-    console.log("Question: " + questionCount);
-
+    
     userSelection();
+
+    score.innerHTML = 'Score: ' + userScore;
+    
 }
 
 function userSelection()
@@ -78,7 +119,8 @@ function userSelection()
     //console.log(choices.length);
     for(let i=0; i<choices.length; i++)
     {
-        choices[i].addEventListener("click", select(this.id))
+        choices[i].addEventListener("click", select);
+       
     }
 
 }
@@ -86,22 +128,39 @@ function userSelection()
 function select(evt)
 {
     evt.preventDefault();
-    console.log("selected id " + this.id);
-    /*if (this.choice1)
+
+    /*if(evt.srcElement.id != 'choice1' || evt.srcElement.id != 'choice2' || evt.srcElement.id != 'choice3' || evt.srcElement.id != 'choice4')
     {
-        console.log("Choice1");
-        return 1;
-    }else if (this.choice2)
-    {
-        console.log("Choice2");
-        return 2;
-    }else if(this.choice3)
-    {
-        console.log("Choice3");
-        return 3;
-    }
-    else{
-        console.log("Choice4");
-        return 4;
+        console.log("No answer selected!");
     }*/
+
+    console.log("selected id " + evt.srcElement.id);
+    switch (evt.srcElement.id)
+    {
+    case 'choice1': userChoice = 1;      
+                    break;
+    case 'choice2': userChoice = 2;      
+                    break;
+    case 'choice3': userChoice = 3;
+                    break;
+    case 'choice4': userChoice = 4;
+                    break;
+    default       : window.alert("Please select your answer.");
+    }
+    console.log("User Choice " + userChoice);
+
+    correctAnswer();
+}
+
+function correctAnswer()
+{
+    if(HTMLCorrectAnswers[questionCount] == userChoice)
+    {
+        console.log("Correct Answer!");
+        userScore = userScore + 10;
+    }
+    else
+    {
+        console.log("Wrong Answer!");
+    }
 }
