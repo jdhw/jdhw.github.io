@@ -13,7 +13,10 @@ HTMLquestions = [
 ];
 
 HTMLanswers = [
-    ['1_1', '1_2', '1_3', '1_4'],
+    ['A. Hypertext Markup Language to display documents in the web browser.', 
+    'B. HTML is use to display content which have tags.', 
+    'C. It is kind of formatting language to display documents in MS-Word.', 
+    'D. HTML is a programming language.'],
     ['2_1', '2_2', '2_3', '2_4'],
     ['3_1', '3_2', '3_3', '3_4'],
     ['4_1', '4_2', '4_3', '4_4'],
@@ -39,14 +42,21 @@ nextButton = document.querySelector('#nextButton');
 choices = document.querySelectorAll(".choices");
 category = document.querySelector("#category");
 score = document.querySelector("#score");
-currentQuestion = document.querySelector("#currentQuestion");
+
 startButton = document.querySelector("#startButton");
+answer = document.querySelector("#answer");
+newGameButtonArea = document.querySelector(".newGameButtonArea");
+newGameButton = document.querySelector("#newGameButton");
 
 questionCount = 0;
 userChoice = 0;
 userScore = 0;
 
-newGame = document.querySelector("#newGame").style.display = 'none';
+//initially startGame and newGame area are hidden
+document.querySelector(".startGame").style.display = 'none';
+newGameButtonArea.style.display = 'none';
+
+//User starts the game by category of choice
 startButton.addEventListener("click", startGame);
 
 
@@ -57,12 +67,15 @@ function startGame()
     userChoice = 0;
     userScore = 0;
 
-    newGame = document.querySelector("#newGame").style.display = 'block';
-    
+    //startGame div is display
+    document.querySelector(".startGame").style.display = 'block';
+    document.querySelector(".selectCategory").style.display = "none";
+    newGameButtonArea.style.display = 'none';
+     
     displayQuestionAnswers(questionCount);
     userSelection();
     score.innerHTML = 'Score: ' + userScore;
-    //currentQuestion.innerHTML = 'Question: ' + questionCount + ' /10'; 
+   
     
 
 }
@@ -84,12 +97,18 @@ function displayQuestionAnswers(questionNumber)
 function nextButtonClick()
 {
     
-    if(questionCount < 9)
+    if(questionCount < 9) //play using next button
     {
         questionCount = questionCount + 1;   
         
+        displayQuestionAnswers(questionCount);
+    
+        userSelection();
+    
+        score.innerHTML = 'Score: ' + userScore;
+
     }
-    else
+    else   //reached to the last question, declare results win / loss, display new game button to start over
     {
         if(userScore > 80)
         {
@@ -103,14 +122,25 @@ function nextButtonClick()
         }
         questionCount = 0;
         userScore = 0;
+        answer.innerHTML = "";
         //disable next button
+        nextButton.removeEventListener("click", nextButtonClick);
+
+        //create new game button
+       /* newGameButton = document.createElement('button');
+        t = document.createTextNode('New Game');
+        newGameButton.appendChild(t);
+        document.querySelector('#newGameButtonArea').appendChild(newGameButton);*/
+
+        //new game button area is shown
+        newGameButtonArea.style.display = 'block';          
+        newGameButton.addEventListener("click", startGame);
+        
+
+        
     }
     
-    displayQuestionAnswers(questionCount);
     
-    userSelection();
-
-    score.innerHTML = 'Score: ' + userScore;
     
 }
 
@@ -157,10 +187,12 @@ function correctAnswer()
     if(HTMLCorrectAnswers[questionCount] == userChoice)
     {
         console.log("Correct Answer!");
+        answer.innerHTML = "Your answer is correct!";
         userScore = userScore + 10;
     }
     else
     {
+        answer.innerHTML = "Your answer is NOT correct. The correct answer is: " + HTMLCorrectAnswers[questionCount]
         console.log("Wrong Answer!");
     }
 }

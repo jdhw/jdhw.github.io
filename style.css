@@ -1,0 +1,156 @@
+/*.wrapper {
+    display: grid;
+    grid-template-columns: 25% auto;
+    grid-template-rows: auto auto auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}*/
+
+body{
+    background-color: seashell;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    
+}
+
+.div{
+    
+    border: black solid 1px;
+}
+
+.header {
+    display: flex;
+    /*background-image: url("download.png");
+    background-repeat: no-repeat;
+    height: 100%;*/
+}
+
+.titleImage{
+    flex: 5%;   
+    /*width: 600px;
+    height: 100px;*/
+   /* background-image: url("download.png");
+    background-repeat: no-repeat;
+    height: 100%;*/
+
+}
+
+.title{
+    flex: 95%;
+    /*width: 800px;
+    height: 100px;*/
+    text-align: center;
+
+}
+
+h1{
+   
+    font-size: 50px;
+    color:firebrick;
+}
+
+/*.selectCategory {
+    display: flex;
+    justify-content: center;
+}*/
+
+.welcome {
+    /*display: flex;*/
+    text-align: center;
+}
+
+.categoryChoices {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.categoryChoices button {
+    background-color: saddlebrown;
+    text-align: center;
+    width: 100px;
+    padding: 15px;
+    color:seashell;
+    margin: 20px;
+}
+
+.categoryChoices button:hover {
+    background-color: salmon;
+}
+.start{
+    display: flex;
+    justify-content: center;
+}
+
+#startButton {
+    background-color: red;
+    border: none;
+    text-align: center;
+    justify-content: center;
+    padding: 30px;
+    color:seashell;
+    border-radius: 50%;
+}
+
+#startButton:hover {
+    background-color: crimson;
+    border: none;
+}
+
+.subHeader1 {
+    display: flex;
+    font-size: 30px;
+    font: bold;
+}
+
+.subHeader1 #category{
+    flex: 50%;   
+    /*width: 600px;
+    height: 100px;*/
+    padding: 20px;
+
+}
+
+.subHeader1 #score{
+    flex: 50%;
+    /*width: 800px;
+    height: 100px;*/
+    text-align: right;
+    padding: 50px;
+ 
+
+}
+
+.mainArea{
+    font-size: 20px;
+    padding: 20px;
+    align-items: center;
+}
+
+.mainArea h3{
+
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: 500px 500px;
+
+}
+.choice {
+    width: 400px;
+    height: 50px;
+    background-color: brown;
+    color: seashell;
+    margin: 20px;
+
+}
+
+#nextButton {
+    background-color: saddlebrown;
+    text-align: center;
+    width: 100px;
+    padding: 15px;
+    color:seashell;
+    margin: 20px;
+}
