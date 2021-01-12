@@ -17,22 +17,25 @@ body{
     
 }
 
-.div{
-    
-    border: black solid 1px;
-}
+
 
 .header {
-    display: flex;
-    background-image: url("download.png");
-    background-repeat: no-repeat;
-    height: 100%;
+    /*display: flex;*/
+    /*background-image: url("Back_Image.jpeg");
+    background-repeat: no-repeat;*/
+    /*background-position: bottom 65%;*/
+    object-fit: cover;
+    /*width: 100%;
+    height: 200px;
+    object-fit: scale-down;*/
+    /*height: 100%;*/
 }
 
 .titleImage{
-    flex: 1%;   
-    width: 100%;
-    height: 75%;
+    /*flex: 1%;*/   
+    /*width: 100%;
+    height: 200px;
+    object-fit: scale-down;*/
     /*justify-content: center;*/
    /* background-image: url("download.png");
     background-repeat: no-repeat;
@@ -41,7 +44,7 @@ body{
 }
 
 .title{
-    flex: 99%;
+    /*flex: 99%;*/
     /*width: 800px;
     height: 100px;*/
     text-align: center;
@@ -109,7 +112,7 @@ h1{
 }
 
 .subHeader1 #category{
-    flex: 30%;   
+    flex: 50%;   
     /*width: 600px;
     height: 100px;*/
     padding: 20px;
@@ -118,10 +121,10 @@ h1{
 }
 
 .subHeader1 #score{
-    flex: 70%;
+    flex: 50%;
     /*width: 800px;
     height: 100px;*/
-    text-align: left;
+    
     padding: 20px;
     text-align: center;
  
@@ -132,15 +135,18 @@ h1{
     font-size: 20px;
     padding: 20px;
     align-items: center;
+    width: 100%;
 }
 
 .mainArea h3{
-
+    text-align: center;
 }
 
 .choices {
     display: grid;
     grid-template-columns: 600px 600px;
+    text-align: center;
+    justify-content: center;
 
 }
 .choice {
@@ -150,20 +156,30 @@ h1{
     color: seashell;
     font-size: 20px;
     margin: 20px;
+    text-align: center;
+    justify-content: center;
 
 }
 .choice:hover {
     color:goldenrod;
 }
 
-#nextButton {
+.nextButtonArea{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*border: black solid 1px;*/
+}
+.nextButtonArea #nextButton {
     background-color: saddlebrown;
     text-align: center;
     width: 100px;
     padding: 15px;
     color:seashell;
     font-size: 20px;
-    margin: 20px;
+    /*margin: auto;
+    align-items: center;
+    justify-content: center;*/
 }
 
 #nextButton:hover {
