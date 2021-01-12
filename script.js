@@ -1,34 +1,49 @@
 console.log("JS loaded");
 HTMLquestions = [
 '1. What is HTML?',
-'2. What is difference between id and class atrribute of the HTML tag',
-'3. Which are HTML5 tags?',
-'4. Which statements are true for block-level and inline elements',
-'5. What tags are used to separate sections of texts',
-'6. What is purpose of alterative texts in images',
-'7. How to insert a picture as a background image on a web page',
-'8. Which are NOT self closing tags',
-'9. Which tag should be used to display elements in bulleted format',
-'10. How to create a link that will connect to another web page when clicked'
+'2. What is difference between id and class atrribute of the HTML tag?',
+'3. Which tag is introduced with HTML5?',
+'4. Which statement is false for block-level and inline elements?',
+'5. Which tag is NOT used to separate sections of texts?',
+'6. What is purpose of alterative texts (alt attribute) in image tag?',
+'7. How to insert a picture as a background image on a web page?',
+'8. Which is NOT a self closing tag?',
+'9. Which tag should be used to display elements in bulleted format?',
+'10. How to add a line on a web page?'
 ];
 
 HTMLanswers = [
     ['A. Hypertext Markup Language to display documents in the web browser.', 
     'B. HTML is use to display content which have tags.', 
-    'C. It is kind of formatting language to display documents in MS-Word.', 
+    'C. It is kind of formatting language to display documents in MS-Word in the browser.', 
     'D. HTML is a programming language.'],
-    ['2_1', '2_2', '2_3', '2_4'],
-    ['3_1', '3_2', '3_3', '3_4'],
-    ['4_1', '4_2', '4_3', '4_4'],
-    ['5_1', '5_2', '5_3', '5_4'],
-    ['6_1', '6_2', '6_3', '6_4'],
-    ['7_1', '7_2', '7_3', '7_4'],
-    ['8_1', '8_2', '8_3', '8_4'],
-    ['9_1', '9_2', '9_3', '9_4'],
-    ['10_1', '10_2', '10_3', '10_4'],
+    ['A. Id and class attributes cannot be applied to the same tag element.',
+     'B. Id is unique and can apply to one element, while class can apply to multiple elements.',
+     'C. Id and class attributes are unique.', 
+     'D. Id and class attributes are same.'],
+    ['A. title', 'B. body', 'C. article', 'D. script'],
+    ['A. The block-level elements are always start on a new line.', 
+    'B. Block elements takes whole width available.', 
+    'C. Inline elements does not start on new line',
+    'D. Inline elements takes up whole width as available'],
+    ['A. INPUT tag', 'B. DIV tag', 'C. BLOCKQUOTE', 'D. P tag'],
+    ['A. Alternative text provides alternative image if not found.',
+    'B. Alternative text provides alternative text for the image, if image cannot be displayed',
+    'C. Alternative text is not useful information for users.',
+    'D. Alt attribute should not be used in image tag.'],
+    ['A. Use img tag in html', 
+    'B. Use imgage tag in html',
+     'C. Use body tag and background-image attribute',
+     'D. The body tag cannot be used to provide background image on a web page'],
+    ['A. link', 'B. img', 'D. br', 'C. div'],
+    ['A. ul', 'B. ol', 'C. dl', 'D. li'],
+    ['A. br tag', 
+    'B. hr tag ',
+    'C. p tag', 
+    'D. line tag '],
 ];
 
-HTMLCorrectAnswers = [1, 2, 3, 4, 1, 2, 3, 4, 1, 2];
+HTMLCorrectAnswers = ['A', 'B', 'C', 'D', 'A', 'B', 'C', 'D', 'A', 'B'];
 
 userAnsers = [];
 
@@ -49,8 +64,13 @@ answer = document.querySelector("#answer");
 //newGameButton = document.querySelector("#newGameButton");
 
 questionCount = 0;
-userChoice = 0;
+userChoice = "";
 userScore = 0;
+
+
+//disable CSS and JavaScript buttons
+document.querySelector("#category2").disabled = true;
+document.querySelector("#category3").disabled = true;
 
 //initially startGame and newGame area are hidden
 document.querySelector(".startGame").style.display = 'none';
@@ -125,7 +145,7 @@ function nextButtonClick()
         {
             //window.alert("You did not win Trivia game!");
             document.querySelector(".alert").style.display = 'block';
-            document.querySelector(".alert").innerHTML = "Sorry! You won did NOT win Trivia game!!";
+            document.querySelector(".alert").innerHTML = "Sorry! You did NOT win Trivia game!!";
             
         }
         questionCount = 0;
@@ -181,19 +201,26 @@ function select(evt)
     console.log("selected id " + evt.srcElement.id);
     switch (evt.srcElement.id)
     {
-    case 'choice1': userChoice = 1;      
+    case 'choice1': userChoice = 'A';      
                     break;
-    case 'choice2': userChoice = 2;      
+    case 'choice2': userChoice = 'B';      
                     break;
-    case 'choice3': userChoice = 3;
+    case 'choice3': userChoice = 'C';
                     break;
-    case 'choice4': userChoice = 4;
+    case 'choice4': userChoice = 'D';
                     break;
-    default       : window.alert("Please select your answer.");
+    default       : answer.innerHTML = "Please select your answer.";
     }
     console.log("User Choice " + userChoice);
 
+    if (userChoice === 'A' || userChoice === 'B' || userChoice === 'C' || userChoice === 'D')
+    {
     correctAnswer();
+    }
+    else
+    {
+        answer.innerHTML = "Please select your answer.";
+    }
 }
 
 function correctAnswer()
