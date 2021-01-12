@@ -45,8 +45,8 @@ score = document.querySelector("#score");
 
 startButton = document.querySelector("#startButton");
 answer = document.querySelector("#answer");
-newGameButtonArea = document.querySelector(".newGameButtonArea");
-newGameButton = document.querySelector("#newGameButton");
+//newGameButtonArea = document.querySelector(".newGameButtonArea");
+//newGameButton = document.querySelector("#newGameButton");
 
 questionCount = 0;
 userChoice = 0;
@@ -54,7 +54,9 @@ userScore = 0;
 
 //initially startGame and newGame area are hidden
 document.querySelector(".startGame").style.display = 'none';
-newGameButtonArea.style.display = 'none';
+//newGameButtonArea.style.display = 'none';
+document.querySelector(".alert").style.display = 'none';
+
 
 //User starts the game by category of choice
 startButton.addEventListener("click", startGame);
@@ -70,8 +72,9 @@ function startGame()
     //startGame div is display
     document.querySelector(".startGame").style.display = 'block';
     document.querySelector(".selectCategory").style.display = "none";
-    newGameButtonArea.style.display = 'none';
-     
+    //newGameButtonArea.style.display = 'none';
+    document.querySelector(".alert").style.display = 'none';
+
     displayQuestionAnswers(questionCount);
     userSelection();
     score.innerHTML = 'Score: ' + userScore;
@@ -107,24 +110,35 @@ function nextButtonClick()
     
         score.innerHTML = 'Score: ' + userScore;
 
+        answer.innerHTML = "";
+
     }
     else   //reached to the last question, declare results win / loss, display new game button to start over
     {
         if(userScore > 80)
         {
-            window.alert("You win Trivia game!");
-            
+           //window.alert("You win Trivia game!");
+           document.querySelector(".alert").style.display = 'block';
+           document.querySelector(".alert").innerHTML = "Congratulations! You won Trivia game!!";
         }
         else
         {
-            window.alert("You did not win Trivia game!");
+            //window.alert("You did not win Trivia game!");
+            document.querySelector(".alert").style.display = 'block';
+            document.querySelector(".alert").innerHTML = "Sorry! You won did NOT win Trivia game!!";
             
         }
         questionCount = 0;
         userScore = 0;
         answer.innerHTML = "";
-        //disable next button
+        //disable next button 
         nextButton.removeEventListener("click", nextButtonClick);
+
+        //disable answers buttons
+        for(let i=0; i<choices.length; i++)
+        {
+            choices[i].removeEventListener("click", select);
+         }
 
         //create new game button
        /* newGameButton = document.createElement('button');
@@ -133,8 +147,8 @@ function nextButtonClick()
         document.querySelector('#newGameButtonArea').appendChild(newGameButton);*/
 
         //new game button area is shown
-        newGameButtonArea.style.display = 'block';          
-        newGameButton.addEventListener("click", startGame);
+        //newGameButtonArea.style.display = 'block';          
+        //newGameButton.addEventListener("click", startGame);
         
 
         
