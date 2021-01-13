@@ -6,11 +6,11 @@ This is trivia game for web developers to test knowledge of HTML, CSS and Javasc
 
 
 ## Wireframe:
-![Wireframe](/Users/hw72669/Desktop/Screen Shot 2021-01-12 at 6.42.23 PM.png)
+![Wireframe](https://github.com/jdhw/project1/screenshot1.png)
 
 
 ## Links
-[URL](htttp://jdhw/github.io)
+[URL](https://jdhw.github.io/)
 
 # Main Features
 * Trivia questions, choices and answers
